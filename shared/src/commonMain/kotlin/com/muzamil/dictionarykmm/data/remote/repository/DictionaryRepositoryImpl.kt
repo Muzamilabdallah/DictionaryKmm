@@ -15,14 +15,12 @@ class DictionaryRepositoryImpl(private val httpClient: HttpClient) : DictionaryR
     override suspend fun searchWord(word: String): List<wordInfoItem> {
         val result = try {
             httpClient.get {
-
                 url("${Constant.BAS_EURL}$word")
             }
         } catch (e: IOException) {
             print(e)
             throw Exception(e)
         }
-
         return try {
             result.body()
         } catch (e: Exception) {

@@ -7,7 +7,6 @@ import kotlinx.coroutines.*
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
-import kotlinx.coroutines.flow.update
 
 class DictionaryPresenter(
     private val dictionaryUseCase: DictionaryUseCase,
@@ -50,8 +49,6 @@ class DictionaryPresenter(
                     Loading = false,
                     wordDtoItem = emptyList()
                 )
-
-
             }
         }
     }
