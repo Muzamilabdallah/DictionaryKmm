@@ -1,6 +1,8 @@
 # DictionaryKmm
 #kmm dictionary App
- 
+  
+  #In porgress..
+  just need to implement ios ui
 
 
 # dictionary App using kmm with mvi pattern
