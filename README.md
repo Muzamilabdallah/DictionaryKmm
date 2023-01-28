@@ -41,8 +41,4 @@ Add badges from somewhere like: [shields.io](https://shields.io/)
 [![AGPL License](https://img.shields.io/badge/license-AGPL-blue.svg)](http://www.gnu.org/licenses/agpl-3.0)
 
 
-## Screenshots
-
-![paging3-layered-architecture](https://user-images.githubusercontent.com/47520464/212475982-1421f2f8-392e-484c-a799-9c525eedfea4.svg)
-
-  
+ 
