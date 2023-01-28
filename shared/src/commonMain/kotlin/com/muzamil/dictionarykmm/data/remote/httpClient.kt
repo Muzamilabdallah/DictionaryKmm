@@ -8,8 +8,8 @@ import io.ktor.serialization.kotlinx.json.*
 import kotlinx.serialization.json.Json
 
 
-fun json() = Json { isLenient = true; ignoreUnknownKeys = true }
-fun httpClient(
+fun createJson() = Json { isLenient = true; ignoreUnknownKeys = true }
+fun createHttpClient(
     json: Json,
     android: HttpClientEngine,
 ) =

@@ -1,8 +1,9 @@
 package com.muzamil.dictionarykmm.di
 
 
-import com.muzamil.dictionarykmm.data.remote.httpClient
-import com.muzamil.dictionarykmm.data.remote.json
+import com.muzamil.dictionarykmm.data.remote.createHttpClient
+import com.muzamil.dictionarykmm.data.remote.createJson
+
 
 import com.muzamil.dictionarykmm.data.remote.repository.DictionaryRepository
 import com.muzamil.dictionarykmm.data.remote.repository.DictionaryRepositoryImpl
@@ -22,8 +23,8 @@ fun initKoin(appDeclaration: KoinAppDeclaration = {}) = startKoin {
 
 fun initKoin() = initKoin {}
 val commonModule = module {
-    single { json() }
-    single { httpClient(get(),get()) }
+    single { createJson() }
+    single { createHttpClient(get(),get()) }
     single<DictionaryRepository> { DictionaryRepositoryImpl(get()) }
     single { DictionaryUseCase(get()) }
 
