@@ -2,24 +2,31 @@ package com.muzamil.dictionarykmm.presentation.dictionaryviewmodel
 
 import com.muzamil.dictionarykmm.domain.DictionaryUseCase
 import com.muzamil.dictionarykmm.domain.GeneralException
-import com.muzamil.dictionarykmm.domain.util.toCommonStateFlow
-import kotlinx.coroutines.*
-import kotlinx.coroutines.flow.MutableStateFlow
-import kotlinx.coroutines.flow.StateFlow
-import kotlinx.coroutines.flow.asStateFlow
+import com.plcoding.translator_kmm.core.domain.util.toCommonStateFlow
 
-class DictionaryPresenter(
+import kotlinx.coroutines.*
+import kotlinx.coroutines.flow.*
+
+class DictionaryViewModel(
     private val dictionaryUseCase: DictionaryUseCase,
     private val coroutineScope: CoroutineScope?
 ) {
     private val viewModelScope = coroutineScope ?: CoroutineScope(Dispatchers.Main)
 
-    private val _mutableState = MutableStateFlow(UiState())
-    val state: StateFlow<UiState> = _mutableState.asStateFlow().toCommonStateFlow()
+
+    private val _state = MutableStateFlow(UiState())
+    val state = _state
+        .stateIn(
+            scope = viewModelScope,
+            started = SharingStarted.WhileSubscribed(5000),
+            initialValue =UiState()
+        )
+        .toCommonStateFlow()
+
     private var job: Job? = null
-    fun onEvent(event: Event) {
+    fun onEvent(event: UiEvent) {
         when (event) {
-            is Event.Search -> search(event.searchTerm)
+            is UiEvent.Search -> search(event.searchTerm)
         }
     }
 
@@ -28,7 +35,7 @@ class DictionaryPresenter(
         job = viewModelScope.launch {
             delay(500)
             try {
-                _mutableState.value = _mutableState.value.copy(
+                _state.value = _state.value.copy(
                     error = null,
                     Loading = true,
                     wordDtoItem = emptyList()
@@ -36,7 +43,7 @@ class DictionaryPresenter(
 
                 val result = dictionaryUseCase.invoke(searchTerm)
                 if (result.isNotEmpty()) {
-                    _mutableState.value = _mutableState.value.copy(
+                    _state.value = _state.value.copy(
                         error = null,
                         Loading = false,
                         wordDtoItem = result
@@ -44,7 +51,7 @@ class DictionaryPresenter(
                 }
             } catch (e: GeneralException) {
                 e.printStackTrace()
-                _mutableState.value = _mutableState.value.copy(
+                _state.value = _state.value.copy(
                     error = "error",
                     Loading = false,
                     wordDtoItem = emptyList()

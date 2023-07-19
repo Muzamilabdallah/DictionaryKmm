@@ -15,19 +15,17 @@ import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.graphics.RectangleShape
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.text.input.TextFieldValue
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import com.muzamil.dictionarykmm.android.ui.viewmodel.DictionaryViewModel
+import com.muzamil.dictionarykmm.android.ui.viewmodel.AndroidDictionaryViewModel
 import com.muzamil.dictionarykmm.data.remote.model.wordInfoItem
-import com.muzamil.dictionarykmm.presentation.dictionaryviewmodel.Event
-import com.muzamil.dictionarykmm.presentation.dictionaryviewmodel.UiState
+import com.muzamil.dictionarykmm.presentation.dictionaryviewmodel.UiEvent
 
 @Composable
-fun home(vm: DictionaryViewModel) {
+fun home(vm: AndroidDictionaryViewModel) {
     val uiState = vm.state.collectAsState().value
 
     Box(
@@ -64,13 +62,13 @@ fun home(vm: DictionaryViewModel) {
 
 
 @Composable
-fun searchField(vm: DictionaryViewModel) {
+fun searchField(vm: AndroidDictionaryViewModel) {
     var text by remember { mutableStateOf(TextFieldValue("")) }
     TextField(
         value = text,
         onValueChange = { value ->
             text = value
-            vm.getWordInfo(Event.Search(value.text))
+            vm.getWordInfo(UiEvent.Search(value.text))
         },
         leadingIcon = {
             Icon(

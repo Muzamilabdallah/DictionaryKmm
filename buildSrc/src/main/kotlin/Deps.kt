@@ -44,4 +44,9 @@ object Deps {
     //koin
     const val koin = "io.insert-koin:koin-core:${Versions.koin}"
     const val koinAndroid = "io.insert-koin:koin-android:${Versions.koin}"
+
+    //kmmviewmodel
+   const val kmmViewModel="com.rickclephas.kmm:kmm-viewmodel-core:${Versions.kmmViewModel}"
+    const val NativeCoroutinesPlugin = "com.rickclephas.kmp:kmp-nativecoroutines-gradle-plugin"
+
 }

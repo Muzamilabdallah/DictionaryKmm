@@ -29,6 +29,8 @@ kotlin {
                 implementation(Deps.koin)
                 implementation(Deps.clientLogging)
                 implementation(Deps.clientJson)
+                implementation(Deps.kmmViewModel)
+
 
             }
         }

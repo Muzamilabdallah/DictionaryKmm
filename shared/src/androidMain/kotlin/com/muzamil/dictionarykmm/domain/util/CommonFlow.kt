@@ -1,5 +1,4 @@
-package com.muzamil.dictionarykmm.domain.util
-
+package com.plcoding.translator_kmm.core.domain.util
 
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.MutableStateFlow

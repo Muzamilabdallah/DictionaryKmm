@@ -11,7 +11,10 @@ dependencyResolutionManagement {
         google()
         mavenCentral()
     }
+
 }
+
+
 
 rootProject.name = "DictionaryKmm"
 include(":androidApp")

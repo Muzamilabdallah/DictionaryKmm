@@ -1,3 +1,6 @@
-package com.muzamil.dictionarykmm.domain.util
+package com.plcoding.translator_kmm.core.domain.util
 
-fun interface DisposableHandle: kotlinx.coroutines.DisposableHandle
+import kotlinx.coroutines.DisposableHandle
+
+
+fun interface DisposableHandle : DisposableHandle
